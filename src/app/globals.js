@@ -1,0 +1,6 @@
+export const chooseImage    = 'http://localhost/wp-content/uploads/2021/04/choose-100x100.png'
+export const chooseFullsize = 'http://localhost/wp-content/uploads/2021/04/choose.png'
+export const noneImage      = 'http://localhost/wp-content/uploads/2021/04/no-overlay.png'
+export const noneFullsize   = 'http://localhost/wp-content/uploads/2021/04/no-overlay-100x100.png'
+export const loadVariations = 'http://localhost/?wc-ajax=sv_load_variations_json'
+export const getVariation   = 'http://localhost/?wc-ajax=get_variation'
