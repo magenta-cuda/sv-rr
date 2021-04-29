@@ -1,0 +1,25 @@
+:root {
+    --the-width: calc(12.5vw - 0px);
+}
+
+.div {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: var(--the-width);
+}
+
+.img {
+    margin: 0;
+    padding: 0;
+    width: calc(var(--the-width) - 12px);
+    height: calc(var(--the-width) - 12px);
+    min-height: calc(var(--the-width) - 12px);
+    object-fit: fill;
+}
+
+.thumbnail {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+}

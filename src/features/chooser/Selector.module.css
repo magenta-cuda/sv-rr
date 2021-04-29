@@ -1,0 +1,15 @@
+.select {
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
+    max-width: 90%;
+}
+
+.descriptionDiv {
+    font-size: 0.8em;
+    padding: 5px 15px;
+}
+
+.priceDiv {
+    font-weight: bold;
+}

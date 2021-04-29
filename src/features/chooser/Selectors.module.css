@@ -1,0 +1,16 @@
+.div {
+    margin: 0;
+    border:5px solid #0000ff;
+    padding: 0;
+    box-sizing: border-box;
+    width: 25vw;
+}
+
+.totalDiv {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.variationDiv {
+    font-size: 0.7em;
+}
