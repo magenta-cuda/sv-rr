@@ -9,9 +9,9 @@ function App() {
   const data = useSelector(selectData)
   const productName = useSelector(selectProductName)
   return (
-    <div className="App">
-      <div className="App-productName">{productName}</div>
-      <header className="App-header">
+    <div className="SV-Redux-App">
+      <div className="SV-Redux-App-productName">{productName}</div>
+      <header className="SV-Redux-App-header">
         <Choosers cells={data} />
         <Selectors attributes={data} />
       </header>

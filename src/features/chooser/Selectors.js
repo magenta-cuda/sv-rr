@@ -1,12 +1,11 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectData, selectProductId, selectProductName, selectVariationId, getVariationAsync } from './choosersSlice';
+import { selectData, selectProductId, selectVariationId, getVariationAsync } from './choosersSlice';
 import { Selector } from './Selector';
 import styles from './Selectors.module.css';
 
 export function Selectors(props) {
     const productId   = useSelector(selectProductId)
-    const productName = useSelector(selectProductName)
     const data        = useSelector(selectData)
     const variationId = useSelector(selectVariationId)
     const dispatch = useDispatch()

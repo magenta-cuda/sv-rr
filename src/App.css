@@ -1,13 +1,13 @@
-.App {
+.SV-Redux-App {
   text-align: center;
 }
 
-.App-productName {
+.SV-Redux-App-productName {
   font-size: 2.5em;
   font-weight: bold;
 }
 
-.App-header {
+.SV-Redux-App-header {
   min-height: 100vh;
   display: flex;
   flex-direction: row;
