@@ -30,6 +30,7 @@ export const reloadAsync = createAsyncThunk(
         for (const attribute in data) {
             if (attribute.endsWith('_mc_xii_optional')) {
                 const selection = attribute.replace('attribute_', '').replace('_mc_xii_optional', '')
+                // TODO: 'No ' should not be hardcoded.
                 data[attribute].options.push({id: (++index).toString(), selection: 'No ' + selection, image: noneImage,
                                               fullsize: noneFullsize, price: 0, description: ''})
             }

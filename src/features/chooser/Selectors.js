@@ -13,7 +13,14 @@ export function Selectors(props) {
     let all = true
     for (const attribute of data) {
         if (attribute.selected !== attribute.options[0]) {
-            attributes[attribute.name] = attribute.selected.selection
+            let selection = attribute.selected.selection
+            if ( attribute.name.endsWith('_mc_xii_optional')) {
+                // TODO: 'No ' should not be hardcoded.
+                if (selection === 'No ' + attribute.name.replace('attribute_', '').replace('_mc_xii_optional', '')) {
+                    selection = 'mc_xii_not_selected';
+                }
+            }
+            attributes[attribute.name] = selection
         } else {
             all = false
             break
