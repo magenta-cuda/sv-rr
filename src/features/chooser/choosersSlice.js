@@ -17,8 +17,9 @@ export const reloadAsync = createAsyncThunk(
             const price       = response[id].price
             const description = response[id].description
             if (!data.hasOwnProperty(attribute)) {
-                data[attribute] = {name: attribute,
-                                   options: [{id: (++index).toString(), selection: 'Choose an ' + attribute, image: chooseImage,
+                const selection = attribute.replace('attribute_', '').replace('_mc_xii_optional', '')
+               data[attribute] = {name: attribute,
+                                   options: [{id: (++index).toString(), selection: 'Choose ' + selection, image: chooseImage,
                                               fullsize: chooseFullsize, price: '', description: ''}]}
                 data[attribute].selected = data[attribute].options[0]
             }
