@@ -7,6 +7,7 @@ export const reloadAsync = createAsyncThunk(
         const response = await fetch(loadVariations + '&product_id=' + id)
             .then(response => { let data = response.json(); console.log('data=', data); return data;})
             .then(response => { console.log('response=', response); return response; })
+        let productName = ''
         let data = {}
         let index = 0
         for (const id in response) {
@@ -16,6 +17,7 @@ export const reloadAsync = createAsyncThunk(
             const fullsize    = response[id].full_size_image
             const price       = response[id].price
             const description = response[id].description
+            productName       = response[id].product_name
             if (!data.hasOwnProperty(attribute)) {
                 const selection = attribute.replace('attribute_', '').replace('_mc_xii_optional', '')
                 data[attribute] = {name: attribute,
@@ -37,7 +39,7 @@ export const reloadAsync = createAsyncThunk(
             state.push(data[attribute])
         }
         console.log('state=', state)
-        return { productId: id, data: state, variationId: 0 }
+        return { productId: id, productName: productName, data: state, variationId: 0 }
     }
 )
 
@@ -55,6 +57,7 @@ const choosersSlice = createSlice({
     name: 'choosers',
     initialState: {
         productId: 0,
+        productName: '',
         data: [],
         variationId: 0,
     },
@@ -79,6 +82,7 @@ const choosersSlice = createSlice({
         [reloadAsync.fulfilled]: (state, action) => {
             console.log(reloadAsync.fulfilled, action)
             state.productId   = action.payload.productId
+            state.productName = action.payload.productName
             state.data        = action.payload.data
             state.variationId = action.payload.variationId
         },
@@ -92,6 +96,8 @@ const choosersSlice = createSlice({
 export const { setSelected }   = choosersSlice.actions
 
 export const selectProductId   = state => state.choosers.productId
+
+export const selectProductName = state => state.choosers.productName
 
 export const selectData        = state => state.choosers.data
 

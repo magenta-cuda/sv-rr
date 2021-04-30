@@ -1,11 +1,16 @@
 .div {
     margin: 0;
     border:5px solid #0000ff;
-    padding: 0;
+    padding: 10px;
     box-sizing: border-box;
     width: 25vw;
 }
 
+.productDiv {
+    font-size: 1.1em;
+    font-weight: bold;
+    padding: 10px 0;
+}
 .totalDiv {
     font-size: 1.1em;
     font-weight: bold;
