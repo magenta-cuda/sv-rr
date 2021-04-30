@@ -8,7 +8,6 @@
 }
 
 .SV-Redux-App-header {
-  min-height: 100vh;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
