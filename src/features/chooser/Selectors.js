@@ -26,7 +26,6 @@ export function Selectors(props) {
             for (const attribute in attributes) {
                 body.append(attribute, attributes[attribute])
             }
-            // TODO: This is a hack since product id is not in the store just yet
             body.append('product_id', productId)
             dispatch(getVariationAsync({ method: 'POST', body: body }))
         }

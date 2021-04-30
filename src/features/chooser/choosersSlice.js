@@ -18,7 +18,7 @@ export const reloadAsync = createAsyncThunk(
             const description = response[id].description
             if (!data.hasOwnProperty(attribute)) {
                 const selection = attribute.replace('attribute_', '').replace('_mc_xii_optional', '')
-               data[attribute] = {name: attribute,
+                data[attribute] = {name: attribute,
                                    options: [{id: (++index).toString(), selection: 'Choose ' + selection, image: chooseImage,
                                               fullsize: chooseFullsize, price: '', description: ''}]}
                 data[attribute].selected = data[attribute].options[0]
@@ -28,6 +28,11 @@ export const reloadAsync = createAsyncThunk(
         }
         let state = []
         for (const attribute in data) {
+            if (attribute.endsWith('_mc_xii_optional')) {
+                const selection = attribute.replace('attribute_', '').replace('_mc_xii_optional', '')
+                data[attribute].options.push({id: (++index).toString(), selection: 'No ' + selection, image: noneImage,
+                                              fullsize: noneFullsize, price: 0, description: ''})
+            }
             state.push(data[attribute])
         }
         console.log('state=', state)
