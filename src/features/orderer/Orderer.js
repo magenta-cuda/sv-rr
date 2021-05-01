@@ -10,19 +10,8 @@ export function Orderer() {
     const data = useSelector(selectData)
     const addedToCart = useSelector(selectAddedToCart)
     const [quantity, setQuantity] = useState(1)
-    // TODO: put total in store
-    let total = 0
-    data.forEach(attribute => {
-        total += Number(attribute.selected.price)
-    })
-    // TODO: put all in store - replace with find?
-    let all = true
-    for (const attribute of data) {
-        if (attribute.selected === attribute.options[0]) {
-            all = false
-            break
-        }
-    }
+    const total = data.reduce(((total, attribute) => total + Number(attribute.selected.price)), 0)
+    const all = data.find(attribute => attribute.selected === attribute.options[0]) === undefined
     return (
         <div className={styles.div}>
             <input type="number" className={styles.input} size="4" title="Quantity" value={quantity} onChange={e => setQuantity(e.target.value)}/>
@@ -31,7 +20,9 @@ export function Orderer() {
             <span className={styles.span}>=</span>
             <span className={styles.span}>{'$' + (quantity * total).toFixed(2)}</span>
             <button className={styles.button} disabled={!all} onClick={onClickHandler}>Add to Cart</button>
-            <span className={styles.span} style={{display: addedToCart ? 'inline' : 'none'}}>{addedToCart} additions</span>
+            <span className={styles.span} style={{display: addedToCart ? 'inline' : 'none'}}>
+                {addedToCart + (addedToCart > 1 ? ' additions' : ' addition')}
+            </span>
             <a className={styles.a} href={cart} target="_blank" style={{display: addedToCart ? 'inline' : 'none'}}>View Cart</a>
         </div>
     )

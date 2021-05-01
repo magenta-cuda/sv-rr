@@ -37,10 +37,7 @@ export function Selectors(props) {
             dispatch(getVariationAsync({ method: 'POST', body: body }))
         }
     })
-    let total = 0
-    props.attributes.forEach(attribute => {
-        total += Number(attribute.selected.price)
-    })
+    const total = props.attributes.reduce(((total, attribute) => total + Number(attribute.selected.price)), 0)
     return (
         <div className={styles.div}>
             <div>
