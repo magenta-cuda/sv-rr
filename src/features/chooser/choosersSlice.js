@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { chooseImage, chooseFullsize, noneImage, noneFullsize, getVariation, loadVariations } from '../../app/globals';
+import { chooseImage, chooseFullsize, noneImage, noneFullsize, getVariation, loadVariations, addToCart } from '../../app/globals';
 
 export const reloadAsync = createAsyncThunk(
     'reloadStatus',
@@ -53,6 +53,16 @@ export const getVariationAsync = createAsyncThunk(
     }
 )
 
+export const addToCartAsync = createAsyncThunk(
+    'addToCart',
+    async (init, thunkAPI) => {
+        const response = await fetch(addToCart, init)
+            .then(response => { return response.json() })
+            .then(response => { console.log('response=', response); return response; })
+        return response
+    }
+)
+
 const choosersSlice = createSlice({
     name: 'choosers',
     initialState: {
@@ -89,6 +99,10 @@ const choosersSlice = createSlice({
         [getVariationAsync.fulfilled]: (state, action) => {
             console.log(getVariationAsync.fulfilled, action)
             state.variationId = action.payload.variation_id
+        },
+        [addToCartAsync.fulfilled]: (state, action) => {
+            console.log(addToCartAsync.fulfilled, action)
+            // TODO: handle the returned 'div.widget_shopping_cart_content' HTML fragment
         },
     }
 });
