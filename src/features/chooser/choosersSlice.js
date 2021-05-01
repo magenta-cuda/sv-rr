@@ -74,6 +74,7 @@ const choosersSlice = createSlice({
         productName: '',
         data: [],
         variationId: 0,
+        addedToCart: 0
     },
     reducers: {
         setSelected: (state, action) => {
@@ -107,6 +108,7 @@ const choosersSlice = createSlice({
         [addToCartAsync.fulfilled]: (state, action) => {
             console.log(addToCartAsync.fulfilled, action)
             // TODO: handle the returned 'div.widget_shopping_cart_content' HTML fragment
+            ++state.addedToCart
         },
     }
 });
@@ -120,5 +122,7 @@ export const selectProductName = state => state.choosers.productName
 export const selectData        = state => state.choosers.data
 
 export const selectVariationId = state => state.choosers.variationId
+
+export const selectAddedToCart = state => state.choosers.addedToCart
 
 export default choosersSlice.reducer

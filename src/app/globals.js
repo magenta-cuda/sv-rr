@@ -6,3 +6,4 @@ export const noneFullsize   = base + '/wp-content/uploads/2021/04/no-overlay-100
 export const loadVariations = base + '/?wc-ajax=sv_load_variations_json'
 export const getVariation   = base + '/?wc-ajax=get_variation'
 export const addToCart      = base + '/?wc-ajax=add_to_cart'
+export const cart           = base + '/index.php/cart/'

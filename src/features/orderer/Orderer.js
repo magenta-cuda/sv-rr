@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { selectData, selectVariationId, addToCartAsync } from '../chooser/choosersSlice'
+import { selectData, selectVariationId, selectAddedToCart, addToCartAsync } from '../chooser/choosersSlice'
 import styles from './Orderer.module.css'
 
 export function Orderer() {
     const dispatch = useDispatch()
     const variationId = useSelector(selectVariationId)
     const data = useSelector(selectData)
+    const addedToCart = useSelector(selectAddedToCart)
     const [quantity, setQuantity] = useState(1)
     // TODO: put total in store
     let total = 0
@@ -29,6 +30,7 @@ export function Orderer() {
             <span className={styles.span}>=</span>
             <span className={styles.span}>{'$' + (quantity * total).toFixed(2)}</span>
             <button className={styles.button} disabled={!all} onClick={onClickHandler}>Add to Cart</button>
+            <span className={styles.span} style={{display: addedToCart ? 'inline' : 'none'}}>{addedToCart} additions</span>
         </div>
     )
     function onClickHandler(e) {
