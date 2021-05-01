@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { selectData, selectVariationId, selectAddedToCart, addToCartAsync } from '../chooser/choosersSlice'
+import { cart } from '../../app/globals';
 import styles from './Orderer.module.css'
 
 export function Orderer() {
@@ -24,13 +25,14 @@ export function Orderer() {
     }
     return (
         <div className={styles.div}>
-            <input type="number" className={styles.input} size="4"  title="Quantity" value={quantity} onChange={e => setQuantity(e.target.value)}/>
+            <input type="number" className={styles.input} size="4" title="Quantity" value={quantity} onChange={e => setQuantity(e.target.value)}/>
             <span className={styles.span}>X</span>
             <span className={styles.span}>{'$' + total.toFixed(2)}</span>
             <span className={styles.span}>=</span>
             <span className={styles.span}>{'$' + (quantity * total).toFixed(2)}</span>
             <button className={styles.button} disabled={!all} onClick={onClickHandler}>Add to Cart</button>
             <span className={styles.span} style={{display: addedToCart ? 'inline' : 'none'}}>{addedToCart} additions</span>
+            <a className={styles.a} href={cart} target="_blank" style={{display: addedToCart ? 'inline' : 'none'}}>View Cart</a>
         </div>
     )
     function onClickHandler(e) {
