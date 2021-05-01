@@ -56,6 +56,10 @@ export const getVariationAsync = createAsyncThunk(
 export const addToCartAsync = createAsyncThunk(
     'addToCart',
     async (init, thunkAPI) => {
+        // WC_AJAX::add_to_cart() will successfully add the item to the cart but will return an error for a virtual variation because
+        // get_post_status() returns false for a virtual variation since it does not exists. Unfortunately, there does not seem to be
+        // a hook to override this and the only solution seems to be removing and replacing WC_AJAX::add_to_cart() as the handler for
+        // the 'add_to_cart' action.
         const response = await fetch(addToCart, init)
             .then(response => { return response.json() })
             .then(response => { console.log('response=', response); return response; })
