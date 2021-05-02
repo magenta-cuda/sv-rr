@@ -1,10 +1,10 @@
-import { Row } from './Row';
-import styles from './Table.module.css';
+import { Row } from './Row'
+import styles from './Table.module.css'
 
 export function Table(props) {
-    let rows = []
-    let row = []
-    props.cells.forEach(function(item, index, array) {
+    const rows = []
+    let   row  = []
+    props.cells.forEach(item => {
         row.push(item)
         if (row.length === props.ncols) {
             rows.push(row)
