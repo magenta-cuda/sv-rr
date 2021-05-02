@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { setSelected } from './choosersSlice';
+import { currency } from '../../app/globals'
 import styles from './Selector.module.css';
 
 export function Selector(props) {
@@ -10,7 +11,7 @@ export function Selector(props) {
                 {props.options.map(option => <option value={option.id} selected={option===props.selected}>{option.selection}</option>)}
             </select>
             <div className={styles.descriptionDiv}>{props.selected.description}</div>
-            <div className={styles.priceDiv}>{'Price: $' + Number(props.selected.price).toFixed(2)}</div>
+            <div className={styles.priceDiv}>{`Price: ${currency}${Number(props.selected.price).toFixed(2)}`}</div>
         </>
     )
 }
