@@ -1,22 +1,22 @@
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { selectData, selectProductId, selectVariationId, getVariationAsync } from './choosersSlice';
-import { Selector } from './Selector';
-import styles from './Selectors.module.css';
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { selectData, selectProductId, selectVariationId, getVariationAsync } from './choosersSlice'
+import { Selector } from './Selector'
+import { currency, noPrefix } from '../../app/globals'
+import styles from './Selectors.module.css'
 
 export function Selectors(props) {
     const productId   = useSelector(selectProductId)
     const data        = useSelector(selectData)
     const variationId = useSelector(selectVariationId)
-    const dispatch = useDispatch()
-    let attributes = {}
-    let all = true
+    const dispatch    = useDispatch()
+    const attributes  = {}
+    let all           = true
     for (const attribute of data) {
         if (attribute.selected !== attribute.options[0]) {
             let selection = attribute.selected.selection
-            if ( attribute.name.endsWith('_mc_xii_optional')) {
-                // TODO: 'No ' should not be hardcoded.
-                if (selection === 'No ' + attribute.name.replace('attribute_', '').replace('_mc_xii_optional', '')) {
+            if (attribute.name.endsWith('_mc_xii_optional')) {
+                if (selection === noPrefix + attribute.name.replace('attribute_', '').replace('_mc_xii_optional', '')) {
                     selection = 'mc_xii_not_selected';
                 }
             }
@@ -28,8 +28,7 @@ export function Selectors(props) {
     }
     useEffect(() => {
         if (all) {
-            console.log('Selectors:attributes=', attributes);
-            let body = new FormData()
+            const body = new FormData()
             for (const attribute in attributes) {
                 body.append(attribute, attributes[attribute])
             }
@@ -44,9 +43,9 @@ export function Selectors(props) {
                 {props.attributes.map(attribute => <><Selector name={attribute.name} selected={attribute.selected} options={attribute.options} /><br /></>)}
             </div>
             <hr />
-            <div className={styles.totalDiv}>{'Total: $' + total.toFixed(2)}</div>
+            <div className={styles.totalDiv}>{`Total: ${currency} ${total.toFixed(2)}`}</div>
             <hr />
-            <div className={styles.variationDiv}>{'Variation Id: ' + variationId}</div>
+            <div className={styles.variationDiv}>{`Variation Id: ${variationId}`}</div>
         </div>
     )
 }
