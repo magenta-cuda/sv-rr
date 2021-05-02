@@ -1,12 +1,12 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { chooseImage, chooseFullsize, noneImage, noneFullsize, getVariation, loadVariations, addToCart } from '../../app/globals';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { chooseImage, chooseFullsize, noneImage, noneFullsize, getVariation, loadVariations, addToCart } from '../../app/globals'
+import { noPrefix } from '../../app/globals'
 
 export const reloadAsync = createAsyncThunk(
     'reloadStatus',
     async (id, thunkAPI) => {
         const response = await fetch(loadVariations + '&product_id=' + id)
-            .then(response => { let data = response.json(); console.log('data=', data); return data;})
-            .then(response => { console.log('response=', response); return response; })
+            .then(response => response.json())
         let productName = ''
         let data = {}
         let index = 0
@@ -32,13 +32,11 @@ export const reloadAsync = createAsyncThunk(
         for (const attribute in data) {
             if (attribute.endsWith('_mc_xii_optional')) {
                 const selection = attribute.replace('attribute_', '').replace('_mc_xii_optional', '')
-                // TODO: 'No ' should not be hardcoded.
-                data[attribute].options.push({id: (++index).toString(), selection: 'No ' + selection, image: noneImage,
+                data[attribute].options.push({id: (++index).toString(), selection: noPrefix + selection, image: noneImage,
                                               fullsize: noneFullsize, price: 0, description: ''})
             }
             state.push(data[attribute])
         }
-        console.log('state=', state)
         return { productId: id, productName: productName, data: state, variationId: 0 }
     }
 )
@@ -47,8 +45,7 @@ export const getVariationAsync = createAsyncThunk(
     'getVariation',
     async (init, thunkAPI) => {
         const response = await fetch(getVariation, init)
-            .then(response => { return response.json() })
-            .then(response => { console.log('response=', response); return response; })
+            .then(response => response.json())
         return response
     }
 )
@@ -70,9 +67,9 @@ export const addToCartAsync = createAsyncThunk(
 const choosersSlice = createSlice({
     name: 'choosers',
     initialState: {
-        productId: 0,
+        productId:   0,
         productName: '',
-        data: [],
+        data:        [],
         variationId: 0,
         addedToCart: 0
     },
@@ -83,10 +80,7 @@ const choosersSlice = createSlice({
             attribute = state.data.find(item => {
                 return (option = item.options.find(option => option.id === action.payload)) !== undefined
             })
-            console.log('attribute=', attribute)
-            console.log('option=', option)
             attribute.selected = option
-            console.log('state=', state)
             state.variationId = 0
         },
         reload: (state, action) => {
