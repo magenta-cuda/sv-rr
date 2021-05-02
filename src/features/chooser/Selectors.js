@@ -43,7 +43,7 @@ export function Selectors(props) {
                 {props.attributes.map(attribute => <><Selector name={attribute.name} selected={attribute.selected} options={attribute.options} /><br /></>)}
             </div>
             <hr />
-            <div className={styles.totalDiv}>{`Total: ${currency} ${total.toFixed(2)}`}</div>
+            <div className={styles.totalDiv}>{`Total: ${currency}${total.toFixed(2)}`}</div>
             <hr />
             <div className={styles.variationDiv}>{`Variation Id: ${variationId}`}</div>
         </div>

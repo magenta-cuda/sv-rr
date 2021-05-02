@@ -1,15 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import store from './app/store';
-import { Provider } from 'react-redux';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
+import App from './App'
+import store from './app/store'
+import { Provider } from 'react-redux'
 import { reloadAsync } from './features/chooser/choosersSlice'
 
-const query = new URLSearchParams(window.location.search)
-let productId = query.get('product_id')
+const query     = new URLSearchParams(window.location.search)
+const productId = query.get('product_id')
 if (!productId) {
-    // TODO:
+    window.alert('query parameter \'product_id\' missing or invalid')
 }
 store.dispatch(reloadAsync(productId))
 
@@ -20,4 +20,4 @@ ReactDOM.render(
     </Provider>
   </React.StrictMode>,
   document.getElementById('sv-redux-root')
-);
+)

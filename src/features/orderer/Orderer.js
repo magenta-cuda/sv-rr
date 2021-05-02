@@ -16,9 +16,9 @@ export function Orderer() {
         <div className={styles.div}>
             <input type="number" className={styles.input} size="4" title="Quantity" value={quantity} onChange={e => setQuantity(e.target.value)}/>
             <span className={styles.span}>X</span>
-            <span className={styles.span}>{`${currency} ${total.toFixed(2)}`}</span>
+            <span className={styles.span}>{`${currency}${total.toFixed(2)}`}</span>
             <span className={styles.span}>=</span>
-            <span className={styles.span}>{`${currency} ${(quantity * total).toFixed(2)}`}</span>
+            <span className={styles.span}>{`${currency}${(quantity * total).toFixed(2)}`}</span>
             <button className={styles.button} disabled={!all} onClick={onClickHandler}>Add to Cart</button>
             <span className={styles.span} style={{display: addedToCart ? 'inline' : 'none'}}>
                 {`${addedToCart} ${addedToCart > 1 ? ' additions' : ' addition'}`}
