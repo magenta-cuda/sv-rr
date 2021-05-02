@@ -58,8 +58,7 @@ export const addToCartAsync = createAsyncThunk(
         // a hook to override this and the only solution seems to be removing and replacing WC_AJAX::add_to_cart() as the handler for
         // the 'add_to_cart' action.
         const response = await fetch(addToCart, init)
-            .then(response => { return response.json() })
-            .then(response => { console.log('response=', response); return response; })
+            .then(response => response.json())
         return response
     }
 )
@@ -89,14 +88,12 @@ const choosersSlice = createSlice({
     },
     extraReducers: {
         [reloadAsync.fulfilled]: (state, action) => {
-            console.log(reloadAsync.fulfilled, action)
             state.productId   = action.payload.productId
             state.productName = action.payload.productName
             state.data        = action.payload.data
             state.variationId = action.payload.variationId
         },
         [getVariationAsync.fulfilled]: (state, action) => {
-            console.log(getVariationAsync.fulfilled, action)
             state.variationId = action.payload.variation_id
         },
         [addToCartAsync.fulfilled]: (state, action) => {
