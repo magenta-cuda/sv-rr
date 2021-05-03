@@ -7,15 +7,18 @@ import styles from './Chooser.module.css'
 export function Chooser(props) {
     const dispatch = useDispatch()
     const cells    = props.cells.reduce((cells, item) => {
-        cells.push(<img className={styles.thumbnail} src={item.image} alt={item.selection}
-                        title={`${item.selection}: ${currency}${Number(item.price).toFixed(2)}`}
+        let price = Number(item.price)
+        price     = price ? `: ${currency}${price.toFixed(2)}` : ''
+        cells.push(<img className={styles.thumbnail} src={item.image} alt={item.selection} title={`${item.selection}${price}`}
                         onClick={() => dispatch(setSelected(item.id))} />)
         return cells
     }, [])
+    let price = Number(props.selected.price)
+    price     = price ? `: ${currency}${price.toFixed(2)}` : ''
     return (
         <div className={styles.div}>
             <img className={styles.img} src={props.selected?props.selected.fullsize:''} alt={props.name}
-                 title={`${props.selected.selection}: ${currency}${Number(props.selected.price).toFixed(2)}`} />
+                 title={`${props.selected.selection}${price}`} />
             <Table ncols={3} cells={cells} />
         </div>
     )
