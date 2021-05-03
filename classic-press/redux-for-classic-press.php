@@ -15,14 +15,14 @@
     $redux_prefix = 'redux';
     $redux_root   = 'sv-redux-root';
     $buffer       = file_get_contents($base_dir . 'index.html');
-    $handle       = NULL;
-    add_action('wp_enqueue_scripts', function() use ($buffer, $url_prefix, $redux_prefix, &$handle, $redux_root) {
+    add_action('wp_enqueue_scripts', function() use ($buffer, $url_prefix, $redux_prefix, $redux_root) {
         global $post;
         if ($post && strpos($post->post_content, $redux_root) === FALSE) {
             return;
         }
         if (preg_match_all("#<(link|script)\\s(href|src)=\"($url_prefix/(.+?)\\.chunk\\.(css|js))\"#", $buffer, $matches)) {
-            $seqno = 0;
+            $seqno  = 0;
+            $handle = NULL;
             foreach ($matches[3] as $file) {
                 $seqno = $seqno + 1;
                 $redux_handle = $redux_prefix . $seqno;
