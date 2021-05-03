@@ -46,7 +46,7 @@ export function Selectors(props) {
             <hr />
             <div className={styles.totalDiv}>
                 <span className={styles.span}>{`Total: ${currency}${total.toFixed(2)}`}</span>
-                <span className={styles.span} style={{display: all ? 'inline' : 'none'}}>{`In stock: ${inStock}`}</span>
+                <span className={`${styles.span} ${styles.inStockSpan}`} style={{display: all ? 'inline' : 'none'}}>{`In stock: ${inStock}`}</span>
             </div>
             <hr />
             <div className={styles.variationDiv}>{`Variation Id: ${variationId}`}</div>
