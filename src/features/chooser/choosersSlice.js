@@ -38,7 +38,7 @@ export const reloadAsync = createAsyncThunk(
             }
             state.push(data[attribute])
         }
-        return { productId: id, productName: productName, data: state, variationId: 0 }
+        return { productId: id, productName: productName, data: state, variationId: null, variationPrice: null, variationQuantity: null }
     }
 )
 
@@ -67,10 +67,12 @@ export const addToCartAsync = createAsyncThunk(
 const choosersSlice = createSlice({
     name: 'choosers',
     initialState: {
-        productId:   0,
-        productName: '',
-        data:        [],
-        variationId: 0,
+        productId:         null,
+        productName:       '',
+        data:              [],
+        variationId:       null,
+        variationPrice:    null,
+        variationQuantity: null,
         addedToCart: 0
     },
     reducers: {
@@ -80,8 +82,10 @@ const choosersSlice = createSlice({
             attribute = state.data.find(item => {
                 return (option = item.options.find(option => option.id === action.payload)) !== undefined
             })
-            attribute.selected = option
-            state.variationId = 0
+            attribute.selected      = option
+            state.variationId       = null
+            state.variationPrice    = null
+            state.variationQuantity = null
         },
         reload: (state, action) => {
             state.data = action.payload
@@ -89,13 +93,17 @@ const choosersSlice = createSlice({
     },
     extraReducers: {
         [reloadAsync.fulfilled]: (state, action) => {
-            state.productId   = action.payload.productId
-            state.productName = action.payload.productName
-            state.data        = action.payload.data
-            state.variationId = action.payload.variationId
+            state.productId         = action.payload.productId
+            state.productName       = action.payload.productName
+            state.data              = action.payload.data
+            state.variationId       = action.payload.variationId
+            state.variationPrice    = action.payload.variationPrice
+            state.variationQuantity = action.payload.variationQuantity
         },
         [getVariationAsync.fulfilled]: (state, action) => {
-            state.variationId = action.payload.variation_id
+            state.variationId       = Number(action.payload.variation_id)
+            state.variationPrice    = Number(action.payload.display_price)
+            state.variationQuantity = Number(action.payload.max_qty)
         },
         [addToCartAsync.fulfilled]: (state, action) => {
             console.log(addToCartAsync.fulfilled, action)
