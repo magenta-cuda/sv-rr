@@ -16,24 +16,25 @@ export const reloadAsync = createAsyncThunk(
             const thumbnail   = response[id].thumbnail
             const fullsize    = response[id].full_size_image
             const price       = response[id].price
+            const quantity    = response[id].quantity
             const description = response[id].description
             productName       = response[id].product_name
             if (!data.hasOwnProperty(attribute)) {
                 const selection = attribute.replace('attribute_', '').replace('_mc_xii_optional', '')
                 data[attribute] = {name: attribute,
                                    options: [{id: (++index).toString(), selection: 'Choose ' + selection, image: chooseImage,
-                                              fullsize: chooseFullsize, price: '', description: ''}]}
+                                              fullsize: chooseFullsize, price: 0, quantity: Number.MAX_SAFE_INTEGER, description: ''}]}
                 data[attribute].selected = data[attribute].options[0]
             }
             data[attribute].options.push({id: id, selection: selection, image: thumbnail, fullsize: fullsize, price: price,
-                                          description: description})
+                                          quantity: quantity, description: description})
         }
         let state = []
         for (const attribute in data) {
             if (attribute.endsWith('_mc_xii_optional')) {
                 const selection = attribute.replace('attribute_', '').replace('_mc_xii_optional', '')
                 data[attribute].options.push({id: (++index).toString(), selection: noPrefix + selection, image: noneImage,
-                                              fullsize: noneFullsize, price: 0, description: ''})
+                                              fullsize: noneFullsize, price: 0, quantity: Number.MAX_SAFE_INTEGER, description: ''})
             }
             state.push(data[attribute])
         }

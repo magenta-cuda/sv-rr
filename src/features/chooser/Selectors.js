@@ -27,7 +27,7 @@ export function Selectors(props) {
         }
     }
     useEffect(() => {
-        if (all) {
+        if (data.length && all) {
             const body = new FormData()
             for (const attribute in attributes) {
                 body.append(attribute, attributes[attribute])
@@ -36,14 +36,18 @@ export function Selectors(props) {
             dispatch(getVariationAsync({ method: 'POST', body: body }))
         }
     })
-    const total = props.attributes.reduce(((total, attribute) => total + Number(attribute.selected.price)), 0)
+    const total   = props.attributes.reduce(((total, attribute) => total + Number(attribute.selected.price)), 0)
+    const inStock = props.attributes.reduce(((inStock, attribute) => Math.min(inStock, Number(attribute.selected.quantity))), Number.MAX_SAFE_INTEGER)
     return (
         <div className={styles.div}>
             <div>
                 {props.attributes.map(attribute => <><Selector name={attribute.name} selected={attribute.selected} options={attribute.options} /><br /></>)}
             </div>
             <hr />
-            <div className={styles.totalDiv}>{`Total: ${currency}${total.toFixed(2)}`}</div>
+            <div className={styles.totalDiv}>
+                <span className={styles.span}>{`Total: ${currency}${total.toFixed(2)}`}</span>
+                <span className={styles.span} style={{display: all ? 'inline' : 'none'}}>{`In stock: ${inStock}`}</span>
+            </div>
             <hr />
             <div className={styles.variationDiv}>{`Variation Id: ${variationId}`}</div>
         </div>
