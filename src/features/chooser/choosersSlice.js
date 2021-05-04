@@ -113,16 +113,20 @@ const choosersSlice = createSlice({
     }
 });
 
-export const { setSelected }   = choosersSlice.actions
+export const { setSelected }         = choosersSlice.actions
 
-export const selectProductId   = state => state.choosers.productId
+export const selectProductId         = state => state.choosers.productId
 
-export const selectProductName = state => state.choosers.productName
+export const selectProductName       = state => state.choosers.productName
 
-export const selectData        = state => state.choosers.data
+export const selectData              = state => state.choosers.data
 
-export const selectVariationId = state => state.choosers.variationId
+export const selectVariationId       = state => state.choosers.variationId
 
-export const selectAddedToCart = state => state.choosers.addedToCart
+export const selectVariationPrice    = state => state.choosers.variationPrice
+
+export const selectVariationQuantity = state => state.choosers.variationQuantity
+
+export const selectAddedToCart       = state => state.choosers.addedToCart
 
 export default choosersSlice.reducer

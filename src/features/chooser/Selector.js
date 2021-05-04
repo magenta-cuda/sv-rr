@@ -19,7 +19,9 @@ export function Selector(props) {
                 })}
             </select>
             <div className={styles.descriptionDiv}>{props.selected.description}</div>
-            <div className={styles.priceDiv}>{`Price: ${currency}${Number(props.selected.price).toFixed(2)}`}</div>
+            <div className={styles.priceDiv } style={{visibility: Number(props.selected.price) ? 'visible' : 'hidden'}}>
+                {`Price: ${currency}${Number(props.selected.price).toFixed(2)}`}
+            </div>
         </>
     )
 }

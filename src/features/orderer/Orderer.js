@@ -19,11 +19,11 @@ export function Orderer() {
             <span className={styles.span}>{`${currency}${total.toFixed(2)}`}</span>
             <span className={styles.span}>=</span>
             <span className={styles.span}>{`${currency}${(quantity * total).toFixed(2)}`}</span>
-            <button className={styles.button} disabled={!all} onClick={onClickHandler}>Add to Cart</button>
-            <span className={styles.span} style={{display: addedToCart ? 'inline' : 'none'}}>
+            <button className={styles.button} style={{visibility: all ? 'visible' : 'hidden'}} disabled={!all} onClick={onClickHandler}>Add to Cart</button>
+            <span className={styles.span} style={{visibility: addedToCart ? 'visible' : 'hidden'}}>
                 {`${addedToCart} ${addedToCart > 1 ? ' additions' : ' addition'}`}
             </span>
-            <a className={styles.a} href={cart} target="_blank" rel="noreferrer" style={{display: addedToCart ? 'inline' : 'none'}}>View Cart</a>
+            <a className={styles.a} href={cart} target="_blank" rel="noreferrer" style={{visibility: addedToCart ? 'visible' : 'hidden'}}>View Cart</a>
         </div>
     )
     function onClickHandler() {

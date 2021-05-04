@@ -46,10 +46,10 @@ export function Selectors(props) {
             <hr />
             <div className={styles.totalDiv}>
                 <span className={styles.span}>{`Total: ${currency}${total.toFixed(2)}`}</span>
-                <span className={`${styles.span} ${styles.inStockSpan}`} style={{display: all ? 'inline' : 'none'}}>{`In stock: ${inStock}`}</span>
+                <span className={`${styles.span} ${styles.inStockSpan}`} style={{visibility: all ? 'visible' : 'hidden'}}>{`In stock: ${inStock}`}</span>
             </div>
             <hr />
-            <div className={styles.variationDiv} style={{display: variationId !== null ? 'inline' : 'none'}}>{`Variation Id: ${variationId}`}</div>
+            <div className={styles.variationDiv} style={{visibility: variationId !== null ? 'visible' : 'hidden'}}>{`Variation Id: ${variationId}`}</div>
         </div>
     )
 }
