@@ -26,8 +26,9 @@ export function Selectors(props) {
             break
         }
     }
+    all &&= data.length
     useEffect(() => {
-        if (variationId === null && data.length && all) {
+        if (variationId === null && all) {
             const body = new FormData()
             for (const attribute in attributes) {
                 body.append(attribute, attributes[attribute])
