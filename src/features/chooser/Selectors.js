@@ -49,7 +49,7 @@ export function Selectors(props) {
                 <span className={`${styles.span} ${styles.inStockSpan}`} style={{display: all ? 'inline' : 'none'}}>{`In stock: ${inStock}`}</span>
             </div>
             <hr />
-            <div className={styles.variationDiv}>{`Variation Id: ${variationId}`}</div>
+            <div className={styles.variationDiv} style={{display: variationId !== null ? 'inline' : 'none'}}>{`Variation Id: ${variationId}`}</div>
         </div>
     )
 }
