@@ -1,27 +1,24 @@
-:root {
-    --the-width: calc(12.5vw - 0px);
-}
-
 .div {
     display: flex;
     flex-direction: column;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    width: var(--the-width);
+    width: calc(100% - 0px);
 }
 
 .img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
     margin: 0;
     padding: 0;
-    width: calc(var(--the-width) - 12px);
-    height: calc(var(--the-width) - 12px);
-    min-height: calc(var(--the-width) - 12px);
-    object-fit: fill;
 }
 
 .thumbnail {
     width: 100%;
     height: auto;
     aspect-ratio: 1 / 1;
+    margin: 0;
+    padding: 0;
 }

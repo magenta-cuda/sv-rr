@@ -13,7 +13,7 @@ export function Table(props) {
     })
     if (row.length) {
         for (let i = row.length; i < props.ncols; i++) {
-            row.push('')
+            row.push(<div style={{visibility: 'hidden'}}>{props.cells[0]}</div>)
         }
         rows.push(row)
     }

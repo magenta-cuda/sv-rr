@@ -1,9 +1,13 @@
+:root {
+    --the-width: calc(25vw - 0px);
+}
+
 .div {
     margin: 0;
     border:5px solid #00ff00;
     padding: 0;
     box-sizing: border-box;
-    width: 25vw;
+    width: var(--the-width);
 }
 
 

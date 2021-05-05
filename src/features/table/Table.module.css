@@ -1,36 +1,35 @@
-.table {
+.table.cols2Td, .table.cols3Td {
     display: flex;
     flex-direction: column;
+    width: calc(100% - 0px);
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.table.cols2Td {
-    width: calc(100% - 0px);
-}
-
-.table.cols3Td {
-    width: calc(100% - 12px);
-}
-
 .tr {
     display: flex;
     flex-direction: row;
+    width: calc(100% - 0px);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.td {
+.table .td {
     flex: 1 1 auto;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.cols2Td td {
+.table.cols2Td .td {
+    width: calc(100% / 2 - 0px);
     border:5px solid #ff0000;
 }
 
-.cols2Td .cols3Td td {
+.table.cols2Td .cols3Td .td {
+    width: calc(100% / 3 - 0px);
     border: 2px solid black;
 }
 
