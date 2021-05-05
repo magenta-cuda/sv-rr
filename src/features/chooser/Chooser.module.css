@@ -1,10 +1,10 @@
 .div {
     display: flex;
     flex-direction: column;
+    width: calc(100% - 0px);
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    width: calc(100% - 0px);
 }
 
 .img {
@@ -13,6 +13,7 @@
     aspect-ratio: 1 / 1;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 .thumbnail {
@@ -21,4 +22,5 @@
     aspect-ratio: 1 / 1;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
