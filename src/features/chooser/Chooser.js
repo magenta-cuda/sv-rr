@@ -19,6 +19,7 @@ export function Chooser(props) {
         <div className={styles.div}>
             <img className={styles.img} src={props.selected?props.selected.fullsize:''} alt={props.name}
                  title={`${props.selected.selection}${price}`} />
+            <div className={styles.overlay}>{`${props.selected.selection}${price}`}</div>
             <Table ncols={3} cells={cells} />
         </div>
     )
