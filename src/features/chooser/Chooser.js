@@ -9,7 +9,7 @@ export function Chooser(props) {
     const cells    = props.cells.reduce((cells, item) => {
         let price = Number(item.price)
         price     = price ? `: ${currency}${price.toFixed(2)}` : ''
-        cells.push(<img className={styles.thumbnail} src={item.image} alt={item.selection} title={`${item.selection}${price}`}
+        cells.push(<img className={styles.thumbnail} src={item.image} alt={item.selection} title={`${item.description}${price}`}
                         onClick={() => dispatch(setSelected(item.id))} />)
         return cells
     }, [])
@@ -18,7 +18,7 @@ export function Chooser(props) {
     return (
         <div className={styles.div}>
             <img className={styles.img} src={props.selected?props.selected.fullsize:''} alt={props.name}
-                 title={`${props.selected.selection}${price}`} />
+                 title={`${props.selected.description}`} />
             <div className={styles.overlay}>{`${props.selected.selection}${price}`}</div>
             <Table ncols={3} cells={cells} />
         </div>
