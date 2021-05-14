@@ -9,7 +9,7 @@ export function Choosers(props) {
     }, [])
     return (
         <div className={styles.div}>
-            <Table ncols={2} cells={cells} />
+            <Table tableClass='' cellClass='' ncols={2} cells={cells} />
         </div>
     );
 }

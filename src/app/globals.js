@@ -9,3 +9,6 @@ export const addToCart      = base + '/?wc-ajax=add_to_cart'
 export const cart           = base + '/index.php/cart/'
 export const currency       = '$'
 export const noPrefix       = 'No '
+
+export const chooserTableClass = 'chooser-table'
+export const chooserCellClass  = 'chooser-cell'

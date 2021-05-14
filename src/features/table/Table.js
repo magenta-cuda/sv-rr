@@ -23,5 +23,8 @@ export function Table(props) {
     } else if (props.ncols === 3) {
         tableClassName += ' ' + styles.cols3Td
     }
-    return <div className={tableClassName}>{rows.map((row) => <Row cells={row} />)}</div>
+    if (props.tableClass !== '') {
+        tableClassName += ` ${props.tableClass}`
+    }
+    return <div className={tableClassName}>{rows.map((row) => <Row cellClass={props.cellClass} cells={row} />)}</div>
 }

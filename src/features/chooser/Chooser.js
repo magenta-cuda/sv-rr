@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux'
 import { Table } from '../table/Table'
 import { setSelected } from './choosersSlice'
-import { currency } from '../../app/globals'
+import { currency, chooserTableClass, chooserCellClass } from '../../app/globals'
 import styles from './Chooser.module.css'
 
 export function Chooser(props) {
@@ -20,7 +20,7 @@ export function Chooser(props) {
             <img className={styles.img} src={props.selected?props.selected.fullsize:''} alt={props.name}
                  title={`${props.selected.description}`} />
             <div className={styles.overlay}>{`${props.selected.selection}${price}`}</div>
-            <Table ncols={3} cells={cells} />
+            <Table tableClass={chooserTableClass} cellClass={chooserCellClass} ncols={3} cells={cells} />
         </div>
     )
 }
