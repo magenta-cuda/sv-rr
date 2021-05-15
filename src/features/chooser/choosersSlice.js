@@ -33,9 +33,8 @@ export const reloadAsync = createAsyncThunk(
             if (url === loadVariationsWithImageProps) {
                 const imageProps = response[id].image_props
                 Object.assign(option, {large_image: imageProps.full_src, large_image_width: imageProps.full_src_w,
-                                       large_image_height: imageProps.full_src_h, title: imageProps.title})
+                                       large_image_height: imageProps.full_src_h})
             }
-            console.log( 'option = ', option )
             data[attribute].options.push(option)
         }
         let state = []

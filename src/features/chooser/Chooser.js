@@ -10,7 +10,8 @@ export function Chooser(props) {
         let price = Number(item.price)
         price     = price ? `: ${currency}${price.toFixed(2)}` : ''
         cells.push(<img className={styles.thumbnail} src={item.image} alt={item.selection} title={`${item.description}${price}`}
-                        onClick={() => dispatch(setSelected(item.id))} />)
+                        data-large_image={item.large_image} data-large_image_width={item.large_image_width}
+                        data-large_image_height={item.large_image_height} onClick={() => dispatch(setSelected(item.id))} />)
         return cells
     }, [])
     let price = Number(props.selected.price)
