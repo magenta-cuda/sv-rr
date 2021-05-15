@@ -6,34 +6,41 @@ import { noPrefix } from '../../app/globals'
 export const reloadAsync = createAsyncThunk(
     'reloadStatus',
     async (id, thunkAPI) => {
-        const url      = loadVariationsWithImageProps
+        // const url      = loadVariationsWithImageProps
+        const url      = loadVariations
         const response = await fetch(`${url}&product_id=${id}`)
             .then(response => response.json())
         let productName = ''
         let data = {}
         let index = 0
         for (const id in response) {
-            const attribute   = response[id].attribute
-            const selection   = response[id].selection
-            const thumbnail   = response[id].thumbnail
-            const fullsize    = response[id].full_size_image
-            const price       = response[id].price
-            const quantity    = response[id].quantity
-            const description = response[id].description
-            productName       = response[id].product_name
+            const theResponse        = response[id]
+            const attribute          = theResponse.attribute
+            const selection          = theResponse.selection
+            const thumbnail          = theResponse.thumbnail
+            const fullsize           = theResponse.full_size_image
+            const price              = theResponse.price
+            const quantity           = theResponse.quantity
+            const description        = theResponse.description
+            const large_image        = theResponse.full_size_image
+            const large_image_width  = theResponse.full_size_image_width
+            const large_image_height = theResponse.full_size_image_height
+            productName              = theResponse.product_name
             if (!data.hasOwnProperty(attribute)) {
                 const selection = attribute.replace('attribute_', '').replace('_mc_xii_optional', '')
                 data[attribute] = {name: attribute,
                                    options: [{id: (++index).toString(), selection: 'Choose ' + selection, image: chooseImage,
-                                              fullsize: chooseFullsize, price: 0, quantity: Number.MAX_SAFE_INTEGER, description: ''}]}
+                                              fullsize: chooseFullsize, price: 0, quantity: Number.MAX_SAFE_INTEGER,
+                                              description: ''}]}
                 data[attribute].selected = data[attribute].options[0]
             }
             const option = {id: id, selection: selection, image: thumbnail, fullsize: fullsize, price: price, quantity: quantity,
-                            description: description}
+                            description: description, large_image: large_image, large_image_width: large_image_width,
+                            large_image_height: large_image_height}
             if (url === loadVariationsWithImageProps) {
-                const imageProps = response[id].image_props
-                Object.assign(option, {large_image: imageProps.full_src, large_image_width: imageProps.full_src_w,
-                                       large_image_height: imageProps.full_src_h})
+                const imageProps = theResponse.image_props
+                // Object.assign(option, {large_image: imageProps.full_src, large_image_width: imageProps.full_src_w,
+                //                        large_image_height: imageProps.full_src_h})
             }
             data[attribute].options.push(option)
         }
