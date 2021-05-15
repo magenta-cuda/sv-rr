@@ -1,11 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { chooseImage, chooseFullsize, noneImage, noneFullsize, getVariation, loadVariations, addToCart } from '../../app/globals'
+import { chooseImage, chooseFullsize, noneImage, noneFullsize, getVariation, loadVariations, loadVariationsWithImageProps, addToCart }
+    from '../../app/globals'
 import { noPrefix } from '../../app/globals'
 
 export const reloadAsync = createAsyncThunk(
     'reloadStatus',
     async (id, thunkAPI) => {
-        const response = await fetch(loadVariations + '&product_id=' + id)
+        const url      = loadVariationsWithImageProps
+        const response = await fetch(`${url}&product_id=${id}`)
             .then(response => response.json())
         let productName = ''
         let data = {}
@@ -26,8 +28,15 @@ export const reloadAsync = createAsyncThunk(
                                               fullsize: chooseFullsize, price: 0, quantity: Number.MAX_SAFE_INTEGER, description: ''}]}
                 data[attribute].selected = data[attribute].options[0]
             }
-            data[attribute].options.push({id: id, selection: selection, image: thumbnail, fullsize: fullsize, price: price,
-                                          quantity: quantity, description: description})
+            const option = {id: id, selection: selection, image: thumbnail, fullsize: fullsize, price: price, quantity: quantity,
+                            description: description}
+            if (url === loadVariationsWithImageProps) {
+                const imageProps = response[id].image_props
+                Object.assign(option, {large_image: imageProps.full_src, large_image_width: imageProps.full_src_w,
+                                       large_image_height: imageProps.full_src_h, title: imageProps.title})
+            }
+            console.log( 'option = ', option )
+            data[attribute].options.push(option)
         }
         let state = []
         for (const attribute in data) {
