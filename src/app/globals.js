@@ -10,6 +10,9 @@ export const addToCart                    = base + '/?wc-ajax=add_to_cart'
 export const cart                         = base + '/index.php/cart/'
 export const currency                     = '$'
 export const noPrefix                     = 'No '
-export const chooserClass                 = 'chooser'
+export const chooserClass                 = 'woocommerce-product-gallery'
 export const chooserTableClass            = 'chooser-table'
-export const chooserCellClass             = 'chooser-cell'
+export const chooserCellClass             = 'woocommerce-product-gallery__image'
+
+// The 'woocommerce-product-gallery' and 'woocommerce-product-gallery__image' classes are used by "single-product.js"
+// The post content must contain the string '[product_page' to cause "single-product.js" to load.
