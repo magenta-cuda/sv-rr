@@ -15,4 +15,4 @@ export const chooserTableClass            = 'chooser-table'
 export const chooserCellClass             = 'woocommerce-product-gallery__image'
 
 // The 'woocommerce-product-gallery' and 'woocommerce-product-gallery__image' classes are used by "single-product.js"
-// The post content must contain the string '[product_page' to cause "single-product.js" to load.
+// The post content must contain the string '[product_page' to cause "frontend/single-product.js" to load.

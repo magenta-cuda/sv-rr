@@ -9,6 +9,8 @@
 <link href="/sv-rr/static/css/main.d000d139.chunk.css" rel="stylesheet">
 <script src="/sv-rr/static/js/2.6cf4c89b.chunk.js"></script>
 <script src="/sv-rr/static/js/main.976ffde3.chunk.js"></script>
+
+The post content must contain the string '[product_page' to cause "frontend/single-product.js" to load.
  */
     $base_dir     = ABSPATH . 'sv-rr/';
     $url_prefix   = '/sv-rr/static';
@@ -29,7 +31,7 @@
                 if (substr_compare($file, '.css', -4, 4) === 0) {
                     wp_enqueue_style($redux_handle, $file, [], FALSE);
                 } else if (substr_compare($file, '.js', -3, 3) === 0) {
-                    wp_enqueue_script($redux_handle, $file, [], FALSE, TRUE);
+                    wp_enqueue_script($redux_handle, $file, [ 'wc-single-product' ], FALSE, TRUE);
                     if ($handle === NULL) {
                         $handle = $redux_handle;
                     }
