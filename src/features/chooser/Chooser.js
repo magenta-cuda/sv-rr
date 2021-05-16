@@ -7,9 +7,10 @@ import styles from './Chooser.module.css'
 export function Chooser(props) {
     const dispatch = useDispatch()
     const cells    = props.cells.reduce((cells, item) => {
-        let price = Number(item.price)
-        price     = price ? `: ${currency}${price.toFixed(2)}` : ''
-        cells.push(<img className={styles.thumbnail} src={item.image} alt={item.selection} title={`${item.description}${price}`}
+        let price           = Number(item.price)
+        price               = price ? `: ${currency}${price.toFixed(2)}` : ''
+        const cellClassName = `${styles.thumbnail}${item===props.selected ? ' flex-active-slide' : ''}`
+        cells.push(<img className={cellClassName} src={item.image} alt={item.selection} title={`${item.description}${price}`}
                         data-large_image={item.large_image} data-large_image_width={item.large_image_width}
                         data-large_image_height={item.large_image_height} onClick={() => dispatch(setSelected(item.id))} />)
         return cells

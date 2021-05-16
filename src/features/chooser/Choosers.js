@@ -19,6 +19,14 @@ export function Choosers(props) {
                     $this.find('.woocommerce-product-gallery__trigger').css({position: 'absolute', top: '0.4375em', right: '0.4375em'})
                 }
             })
+            window.jQuery('.woocommerce-product-gallery__image img').each(function() {
+                const $this = window.jQuery(this)
+                if ($this.hasClass('flex-active-slide')) {
+                    $this.parent().addClass('flex-active-slide')
+                } else {
+                    $this.parent().removeClass('flex-active-slide')
+                }
+            })
         }
     })
     return (
