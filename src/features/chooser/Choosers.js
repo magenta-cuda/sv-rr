@@ -16,6 +16,7 @@ export function Choosers(props) {
                 console.log('$this.data("product_gallery")', $this.data('product_gallery'))
                 if ($this.data('product_gallery') === undefined) {
                     $this.wc_product_gallery()
+                    $this.find('.woocommerce-product-gallery__trigger').css({position: 'absolute', top: '0.4375em', right: '0.4375em'})
                 }
             })
         }
