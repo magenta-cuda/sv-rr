@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { chooseImage, chooseFullsize, noneImage, noneFullsize, getVariation, loadVariations, loadVariationsWithImageProps, addToCart }
+import { chooseImage, chooseFullsize, noneImage, noneFullsize, iconFullsizeDimension, getVariation, loadVariations,
+         loadVariationsWithImageProps, addToCart }
     from '../../app/globals'
 import { noPrefix } from '../../app/globals'
 
@@ -29,9 +30,10 @@ export const reloadAsync = createAsyncThunk(
             if (!data.hasOwnProperty(attribute)) {
                 const selection = attribute.replace('attribute_', '').replace('_mc_xii_optional', '')
                 data[attribute] = {name: attribute,
-                                   options: [{id: (++index).toString(), selection: 'Choose ' + selection, image: chooseImage,
+                                   options: [{id: (++index).toString(), selection: `Choose ${selection}`, image: chooseImage,
                                               fullsize: chooseFullsize, price: 0, quantity: Number.MAX_SAFE_INTEGER,
-                                              description: ''}]}
+                                              description: `Choose ${selection}`, large_image: chooseFullsize,
+                                              large_image_width: iconFullsizeDimension, large_image_height: iconFullsizeDimension}]}
                 data[attribute].selected = data[attribute].options[0]
             }
             const option = {id: id, selection: selection, image: thumbnail, fullsize: fullsize, price: price, quantity: quantity,
@@ -49,7 +51,9 @@ export const reloadAsync = createAsyncThunk(
             if (attribute.endsWith('_mc_xii_optional')) {
                 const selection = attribute.replace('attribute_', '').replace('_mc_xii_optional', '')
                 data[attribute].options.push({id: (++index).toString(), selection: noPrefix + selection, image: noneImage,
-                                              fullsize: noneFullsize, price: 0, quantity: Number.MAX_SAFE_INTEGER, description: ''})
+                                              fullsize: noneFullsize, price: 0, quantity: Number.MAX_SAFE_INTEGER,
+                                              description: noPrefix + selection, large_image: noneFullsize,
+                                              large_image_width: iconFullsizeDimension, large_image_height: iconFullsizeDimension})
             }
             state.push(data[attribute])
         }

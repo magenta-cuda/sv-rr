@@ -8,6 +8,7 @@ export const loadVariationsWithImageProps = base + '/?wc-ajax=sv_load_variations
 export const getVariation                 = base + '/?wc-ajax=get_variation'
 export const addToCart                    = base + '/?wc-ajax=add_to_cart'
 export const cart                         = base + '/index.php/cart/'
+export const iconFullsizeDimension        = 200
 export const currency                     = '$'
 export const noPrefix                     = 'No '
 export const chooserClass                 = 'woocommerce-product-gallery'
