@@ -77,7 +77,7 @@ jQuery( function( $ ) {
 	 */
 	var ProductGallery = function( $target, args ) {
 		this.$target = $target;
-		this.$images = $( '.woocommerce-product-gallery__image', $target );
+		this.$images = $( '.sv-rr-product-gallery__image', $target );
 
 		// No images? Abort.
 		if ( 0 === this.$images.length ) {
@@ -136,7 +136,7 @@ jQuery( function( $ ) {
 			gallery = this;
 
 		var options = $.extend( {
-			selector: '.woocommerce-product-gallery__wrapper > .woocommerce-product-gallery__image',
+			selector: '.woocommerce-product-gallery__wrapper > .sv-rr-product-gallery__image',
 			start: function() {
 				$target.css( 'opacity', 1 );
 			},
@@ -148,12 +148,12 @@ jQuery( function( $ ) {
 		$target.flexslider( options );
 
 		// Trigger resize after main image loads to ensure correct gallery size.
-		$( '.woocommerce-product-gallery__wrapper .woocommerce-product-gallery__image:eq(0) .wp-post-image' ).one( 'load', function() {
+		$( '.woocommerce-product-gallery__wrapper .sv-rr-product-gallery__image:eq(0) .wp-post-image' ).one( 'load', function() {
 			var $image = $( this );
 
 			if ( $image ) {
 				setTimeout( function() {
-					var setHeight = $image.closest( '.woocommerce-product-gallery__image' ).height();
+					var setHeight = $image.closest( '.sv-rr-product-gallery__image' ).height();
 					var $viewport = $image.closest( '.flex-viewport' );
 
 					if ( setHeight && $viewport ) {
@@ -208,18 +208,18 @@ jQuery( function( $ ) {
 	 */
 	ProductGallery.prototype.initPhotoswipe = function() {
 		if ( this.zoom_enabled && this.$images.length > 0 ) {
-			this.$target.prepend( '<a href="#" class="woocommerce-product-gallery__trigger">🔍</a>' );
-			this.$target.on( 'click', '.woocommerce-product-gallery__trigger', this.openPhotoswipe );
-			this.$target.on( 'click', '.woocommerce-product-gallery__image a', function( e ) {
+			this.$target.prepend( '<a href="#" class="sv-rr-product-gallery__trigger">🔍</a>' );
+			this.$target.on( 'click', '.sv-rr-product-gallery__trigger', this.openPhotoswipe );
+			this.$target.on( 'click', '.sv-rr-product-gallery__image a', function( e ) {
 				e.preventDefault();
 			});
 
 			// If flexslider is disabled, gallery images also need to trigger photoswipe on click.
 			if ( ! this.flexslider_enabled ) {
-				this.$target.on( 'click', '.woocommerce-product-gallery__image a', this.openPhotoswipe );
+				this.$target.on( 'click', '.sv-rr-product-gallery__image a', this.openPhotoswipe );
 			}
 		} else {
-			this.$target.on( 'click', '.woocommerce-product-gallery__image a', this.openPhotoswipe );
+			this.$target.on( 'click', '.sv-rr-product-gallery__image a', this.openPhotoswipe );
 		}
 	};
 
@@ -270,10 +270,10 @@ jQuery( function( $ ) {
 			eventTarget = $( e.target ),
 			clicked;
 
-		if ( eventTarget.is( '.woocommerce-product-gallery__trigger' ) || eventTarget.is( '.woocommerce-product-gallery__trigger img' ) ) {
+		if ( eventTarget.is( '.sv-rr-product-gallery__trigger' ) || eventTarget.is( '.sv-rr-product-gallery__trigger img' ) ) {
 			clicked = this.$target.find( '.flex-active-slide' );
 		} else {
-			clicked = eventTarget.closest( '.woocommerce-product-gallery__image' );
+			clicked = eventTarget.closest( '.sv-rr-product-gallery__image' );
 		}
 
         if ( !clicked || !clicked.length ) {
@@ -281,7 +281,7 @@ jQuery( function( $ ) {
         }
 
 		var options = $.extend( {
-			index: this.$target.find( '.woocommerce-product-gallery__image' ).index( clicked ),
+			index: this.$target.find( '.sv-rr-product-gallery__image' ).index( clicked ),
 			addCaptionHTMLFn: function( item, captionEl ) {
 				if ( ! item.title ) {
 					captionEl.children[0].textContent = '';

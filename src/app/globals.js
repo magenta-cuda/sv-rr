@@ -11,9 +11,9 @@ export const cart                         = base + '/index.php/cart/'
 export const iconFullsizeDimension        = 200
 export const currency                     = '$'
 export const noPrefix                     = 'No '
-export const chooserClass                 = 'woocommerce-product-gallery'
+export const chooserClass                 = 'sv-rr-product-gallery'
 export const chooserTableClass            = 'chooser-table'
-export const chooserCellClass             = 'woocommerce-product-gallery__image'
+export const chooserCellClass             = 'sv-rr-product-gallery__image'
 
-// The 'woocommerce-product-gallery' and 'woocommerce-product-gallery__image' classes are used by "single-product.js"
+// The 'sv-rr-product-gallery' and 'sv-rr-product-gallery__image' classes are used by "sv-rr-single-product.js"
 // The post content must contain the string '[product_page' to cause "frontend/single-product.js" to load.
