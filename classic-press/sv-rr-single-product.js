@@ -286,8 +286,12 @@ jQuery( function( $ ) {
 			clicked = eventTarget.closest( '.woocommerce-product-gallery__image' );
 		}
 
+        if ( !clicked || !clicked.length ) {
+            return;
+        }
+
 		var options = $.extend( {
-			index: $( clicked ).index(),
+			index: this.$target.find( '.woocommerce-product-gallery__image' ).index( clicked ),
 			addCaptionHTMLFn: function( item, captionEl ) {
 				if ( ! item.title ) {
 					captionEl.children[0].textContent = '';
