@@ -22,6 +22,9 @@ The post content must contain the string '[product_page' to cause "frontend/sing
         if ($post && strpos($post->post_content, $redux_root) === FALSE) {
             return;
         }
+        wp_enqueue_script( 'sv-rr-single-product', plugin_dir_url( __FILE__ ) . 'sv-rr-single-product.js', [ 'jquery' ], FALSE,
+                           TRUE );
+
         if (preg_match_all("#<(link|script)\\s(href|src)=\"($url_prefix/(.+?)\\.chunk\\.(css|js))\"#", $buffer, $matches)) {
             $seqno  = 0;
             $handle = NULL;

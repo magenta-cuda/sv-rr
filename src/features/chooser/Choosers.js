@@ -10,12 +10,13 @@ export function Choosers(props) {
         return cells
     }, [])
     useEffect(() => {
-        if (window.hasOwnProperty('jQuery') && window.jQuery.hasOwnProperty('fn') && window.jQuery.fn.hasOwnProperty('wc_product_gallery')) {
+        if (window.hasOwnProperty('jQuery') && window.jQuery.hasOwnProperty('fn') && window.jQuery.fn.hasOwnProperty('sv_rr_product_gallery')) {
+            // window.wc_single_product_params.zoom_enabled = false
             window.jQuery('.woocommerce-product-gallery').each(function() {
                 const $this = window.jQuery(this)
                 console.log('$this.data("product_gallery")', $this.data('product_gallery'))
                 if ($this.data('product_gallery') === undefined) {
-                    $this.wc_product_gallery()
+                    $this.sv_rr_product_gallery()
                     $this.find('.woocommerce-product-gallery__trigger').css({position: 'absolute', top: '0.4375em', right: '0.4375em'})
                 }
             })
