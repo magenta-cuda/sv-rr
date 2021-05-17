@@ -14,7 +14,6 @@ export function Choosers(props) {
             // window.wc_single_product_params.zoom_enabled = false
             window.jQuery(`.${chooserClass}`).each(function() {
                 const $this = window.jQuery(this)
-                console.log('$this.data("product_gallery")', $this.data('product_gallery'))
                 if ($this.data('product_gallery') === undefined) {
                     $this.sv_rr_product_gallery()
                     $this.find('.sv-rr-product-gallery__trigger').css({position: 'absolute', top: '0.4375em', right: '0.4375em'})
