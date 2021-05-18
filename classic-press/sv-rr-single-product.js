@@ -46,6 +46,7 @@ jQuery( function( $ ) {
 		this.onResetSlidePosition = this.onResetSlidePosition.bind( this );
 		this.getGalleryItems      = this.getGalleryItems.bind( this );
 		this.openPhotoswipe       = this.openPhotoswipe.bind( this );
+		this.initZoom             = this.initZoom.bind( this );
 
 		if ( this.flexslider_enabled ) {
 			this.initFlexslider();
@@ -53,10 +54,6 @@ jQuery( function( $ ) {
 		} else {
 			this.$target.css( 'opacity', 1 );
 		}
-
-        if ( this.zoom_enabled ) {
-            this.initZoomForTarget( $target.find( '.sv-rr-product-image' ) );
-        }
 
 		if ( this.photoswipe_enabled ) {
 			this.initPhotoswipe();
@@ -145,16 +142,10 @@ jQuery( function( $ ) {
 		if ( this.zoom_enabled && this.$images.length > 0 ) {
 			this.$target.prepend( '<a href="#" class="sv-rr-product-gallery__trigger">🔍</a>' );
 			this.$target.on( 'click', '.sv-rr-product-gallery__trigger', this.openPhotoswipe );
+			this.$target.on( 'click', '.sv-rr-product-gallery__image img', this.initZoom );
 			this.$target.on( 'click', '.sv-rr-product-gallery__image a', function( e ) {
 				e.preventDefault();
 			});
-
-			// If flexslider is disabled, gallery images also need to trigger photoswipe on click.
-			if ( ! this.flexslider_enabled ) {
-				this.$target.on( 'click', '.sv-rr-product-gallery__image a', this.openPhotoswipe );
-			}
-		} else {
-			this.$target.on( 'click', '.sv-rr-product-gallery__image a', this.openPhotoswipe );
 		}
 	};
 
@@ -231,6 +222,16 @@ jQuery( function( $ ) {
 		var photoswipe = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options );
 		photoswipe.init();
 	};
+
+    ProductGallery.prototype.initZoom = function( e ) {
+        e.preventDefault();
+        if ( this.zoom_enabled ) {
+            var thiz = this;
+            window.setTimeout( function() {
+                thiz.initZoomForTarget( thiz.$target.find( '.sv-rr-product-image' ) );
+            }, 100 );
+        }
+    };
 
 	/**
 	 * Function to call wc_product_gallery on jquery selector.
