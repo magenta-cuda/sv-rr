@@ -54,8 +54,9 @@ jQuery( function( $ ) {
 			this.$target.css( 'opacity', 1 );
 		}
 
-		if ( this.zoom_enabled ) {
-		}
+        if ( this.zoom_enabled ) {
+            this.initZoomForTarget( $target.find( '.sv-rr-product-image' ) );
+        }
 
 		if ( this.photoswipe_enabled ) {
 			this.initPhotoswipe();

@@ -12,6 +12,7 @@ export const iconFullsizeDimension        = 200
 export const currency                     = '$'
 export const noPrefix                     = 'No '
 export const chooserClass                 = 'sv-rr-product-gallery'
+export const chooserImageClass            = 'sv-rr-product-image'
 export const chooserTableClass            = 'chooser-table'
 export const chooserCellClass             = 'sv-rr-product-gallery__image'
 
