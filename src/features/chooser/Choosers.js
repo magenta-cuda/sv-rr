@@ -16,7 +16,7 @@ export function Choosers(props) {
                 const $this = window.jQuery(this)
                 if ($this.data('product_gallery') === undefined) {
                     $this.sv_rr_product_gallery()
-                    $this.find('.sv-rr-product-gallery__trigger').css({position: 'absolute', top: '0.4375em', right: '0.4375em'})
+                    $this.find('.sv-rr-product-gallery__trigger').css({position: 'absolute', top: '0.4375em', right: '0.4375em', zIndex: 99})
                 }
             })
             window.jQuery(`.${chooserCellClass} img`).each(function() {

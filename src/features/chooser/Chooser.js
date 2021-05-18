@@ -19,9 +19,11 @@ export function Chooser(props) {
     price     = price ? `: ${currency}${price.toFixed(2)}` : ''
     return (
         <div className={`${styles.div}${props.chooserClass !== '' ? ` ${props.chooserClass}` : ''}`}>
-            <img className={styles.img} src={props.selected?props.selected.fullsize:''} alt={props.name}
-                 title={`${props.selected.description}`} />
-            <div className={styles.overlay}>{`${props.selected.selection}${price}`}</div>
+            <div className={styles.imgDiv}>
+                <img className={styles.img} src={props.selected?props.selected.fullsize:''} alt={props.name}
+                     title={`${props.selected.description}`} />
+                <div className={styles.overlay}>{`${props.selected.selection}${price}`}</div>
+            </div>
             <Table tableClass={chooserTableClass} cellClass={chooserCellClass} ncols={3} cells={cells} />
         </div>
     )
