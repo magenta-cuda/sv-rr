@@ -29,6 +29,10 @@ The post content must contain the string '[product_page' to cause "frontend/sing
             wp_enqueue_script( 'zoom' );
         }
 
+        if ( current_theme_supports( 'wc-product-gallery-slider' ) ) {
+            wp_enqueue_script( 'flexslider' );
+        }
+
         if ( current_theme_supports( 'wc-product-gallery-lightbox' ) ) {
             wp_enqueue_script( 'photoswipe-ui-default' );
             wp_enqueue_script( 'photoswipe-default-skin' );
