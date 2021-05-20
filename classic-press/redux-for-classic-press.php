@@ -25,6 +25,10 @@ The post content must contain the string '[product_page' to cause "frontend/sing
         wp_enqueue_script( 'sv-rr-single-product', plugin_dir_url( __FILE__ ) . 'sv-rr-single-product.js', [ 'jquery' ], FALSE,
                            TRUE );
 
+        if ( current_theme_supports( 'wc-product-gallery-zoom' ) ) {
+            wp_enqueue_script( 'zoom' );
+        }
+
         if ( current_theme_supports( 'wc-product-gallery-lightbox' ) ) {
             wp_enqueue_script( 'photoswipe-ui-default' );
             wp_enqueue_script( 'photoswipe-default-skin' );
