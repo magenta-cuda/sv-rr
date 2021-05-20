@@ -1,7 +1,8 @@
-import { useDispatch } from 'react-redux'
-import { Table } from '../table/Table'
-import { setSelected } from './choosersSlice'
-import { currency, chooserTableClass, chooserCellClass } from '../../app/globals'
+import {useEffect} from 'react'
+import {useDispatch} from 'react-redux'
+import {Table} from '../table/Table'
+import {setSelected} from './choosersSlice'
+import {currency, chooserTableClass, chooserCellClass} from '../../app/globals'
 import styles from './Chooser.module.css'
 
 export function Chooser(props) {
@@ -17,8 +18,27 @@ export function Chooser(props) {
     }, [])
     let price = Number(props.selected.price)
     price     = price ? `: ${currency}${price.toFixed(2)}` : ''
+    useEffect(() => {
+        if (window.hasOwnProperty('jQuery') && window.jQuery.hasOwnProperty('fn') && window.jQuery.fn.hasOwnProperty('sv_rr_product_gallery')) {
+            const $chooser = window.jQuery(`#${props.id}`)
+            if ($chooser.data('product_gallery') === undefined) {
+                $chooser.sv_rr_product_gallery()
+                $chooser.find('.sv-rr-product-gallery__trigger').css({position: 'absolute', top: '0.4375em', right: '0.4375em', zIndex: 99})
+            }
+            $chooser.find(`.${chooserCellClass} img`).each(function() {
+                const $this = window.jQuery(this)
+                if ($this.hasClass('flex-active-slide')) {
+                    $this.parent().addClass('flex-active-slide')
+                    $this.removeClass('flex-active-slide')
+                } else {
+                    $this.parent().removeClass('flex-active-slide')
+                }
+            })
+            $chooser.trigger('zoom_init')
+        }
+    })
     return (
-        <div className={`${styles.div}${props.chooserClass !== '' ? ` ${props.chooserClass}` : ''}`}>
+        <div id={props.id} className={`${styles.div}${props.chooserClass !== '' ? ` ${props.chooserClass}` : ''}`}>
             <div className={`${styles.imgDiv}${props.chooserImageClass !== '' ? ` ${props.chooserImageClass}` : ''}`}>
                 <img className={styles.img} src={props.selected ? props.selected.fullsize : ''} alt={props.name}
                      title={`${props.selected.description}`} data-large_image={props.selected ? props.selected.large_image : ''}

@@ -140,12 +140,13 @@ jQuery( function( $ ) {
 	 */
 	ProductGallery.prototype.initPhotoswipe = function() {
 		if ( this.zoom_enabled && this.$images.length > 0 ) {
-			this.$target.prepend( '<a href="#" class="sv-rr-product-gallery__trigger">🔍</a>' );
-			this.$target.on( 'click', '.sv-rr-product-gallery__trigger', this.openPhotoswipe );
-			this.$target.on( 'click', '.sv-rr-product-gallery__image img', this.initZoom );
-			this.$target.on( 'click', '.sv-rr-product-gallery__image a', function( e ) {
-				e.preventDefault();
-			});
+            this.$target.prepend( '<a href="#" class="sv-rr-product-gallery__trigger">🔍</a>' );
+            this.$target.on( 'click', '.sv-rr-product-gallery__trigger', this.openPhotoswipe );
+            // this.$target.on( 'click', '.sv-rr-product-gallery__image img', this.initZoom );
+            this.$target.on( 'zoom_init', this.initZoom );
+            this.$target.on( 'click', '.sv-rr-product-gallery__image a', function( e ) {
+                e.preventDefault();
+            });
 		}
 	};
 
