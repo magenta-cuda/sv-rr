@@ -1,6 +1,6 @@
 import {Chooser} from './Chooser'
 import {Table} from '../table/Table'
-import {chooserClass, chooserImageClass, chooserCellClass} from '../../app/globals'
+import {chooserClass, chooserImageClass} from '../../app/globals'
 import styles from './Choosers.module.css'
 
 export function Choosers(props) {
@@ -13,5 +13,5 @@ export function Choosers(props) {
         <div className={styles.div}>
             <Table tableClass='' cellClass='' ncols={2} cells={cells} />
         </div>
-    );
+    )
 }
