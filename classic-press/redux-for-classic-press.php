@@ -25,6 +25,10 @@ The post content must contain the string '[product_page' to cause "frontend/sing
         wp_enqueue_script( 'sv-rr-single-product', plugin_dir_url( __FILE__ ) . 'sv-rr-single-product.js', [ 'jquery' ], FALSE,
                            TRUE );
 
+/*
+ * Forcing ClassicCommerce to load "frontend/single-product.js" by embedding the string '[product_page' in the post_content works
+ * then the below.
+
         if ( current_theme_supports( 'wc-product-gallery-zoom' ) ) {
             wp_enqueue_script( 'zoom' );
         }
@@ -36,7 +40,9 @@ The post content must contain the string '[product_page' to cause "frontend/sing
         if ( current_theme_supports( 'wc-product-gallery-lightbox' ) ) {
             wp_enqueue_script( 'photoswipe-ui-default' );
             wp_enqueue_script( 'photoswipe-default-skin' );
+            add_action( 'wp_footer', 'woocommerce_photoswipe' );
         }
+ */
 
         if (preg_match_all("#<(link|script)\\s(href|src)=\"($url_prefix/(.+?)\\.chunk\\.(css|js))\"#", $buffer, $matches)) {
             $seqno  = 0;
