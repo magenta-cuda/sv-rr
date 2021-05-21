@@ -29,7 +29,7 @@ export function Chooser(props) {
                 const $this = window.jQuery(this)
                 if ($this.hasClass('flex-active-slide')) {
                     $this.parent().addClass('flex-active-slide')
-                    $this.removeClass('flex-active-slide')
+                    // $this.removeClass('flex-active-slide')
                 } else {
                     $this.parent().removeClass('flex-active-slide')
                 }
