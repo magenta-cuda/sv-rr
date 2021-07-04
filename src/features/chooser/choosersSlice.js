@@ -111,6 +111,9 @@ const choosersSlice = createSlice({
         }
     },
     extraReducers: {
+        [reloadAsync.pending]: (state, action) => {
+            state.data             = 'Loading ...'
+        },
         [reloadAsync.fulfilled]: (state, action) => {
             state.productId         = action.payload.productId
             state.productName       = action.payload.productName

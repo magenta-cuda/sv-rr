@@ -11,16 +11,18 @@ function App() {
     const productName = useSelector(selectProductName)
     return (
         <div className="SV-Redux-App">
-            {!data.length
-                ? <div className="SV-Redux-App-productName">Product does not exists.</div>
-                : <>
-                    <div className="SV-Redux-App-productName">{productName}</div>
-                    <header className="SV-Redux-App-header">
-                        <Choosers cells={data} />
-                        <Selectors attributes={data} />
-                    </header>
-                    <Orderer />
-                </>
+            {typeof data === "string"
+                ? <div className="SV-Redux-App-productName">{data}</div>
+                : !data.length
+                    ? <div className="SV-Redux-App-productName">Product does not exists.</div>
+                    : <>
+                        <div className="SV-Redux-App-productName">{productName}</div>
+                        <header className="SV-Redux-App-header">
+                            <Choosers cells={data} />
+                            <Selectors attributes={data} />
+                        </header>
+                        <Orderer />
+                    </>
             }
         </div>
     );
