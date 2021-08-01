@@ -1,6 +1,6 @@
 <?php
 /*
- * Plugin Name: Redux Adapter for Classic Commerce
+ * Plugin Name: Redux Adapter for Simple Variations
  * Plugin URI: http://svmc.x10host.com/
  * Description: Enqueues the React Redux scripts for the React Redux pages of Simple Variations
  * Version: 0.1.0
@@ -15,8 +15,14 @@
 <script src="/sv-rr/static/js/2.6cf4c89b.chunk.js"></script>
 <script src="/sv-rr/static/js/main.976ffde3.chunk.js"></script>
 
-The post content must contain the string '[product_page' to cause "frontend/single-product.js" to load.
+The post content must contain the string '[product_page' to load the following scripts and styles:
+    "assets/js/zoom/jquery.zoom.js"
+    "assets/js/flexslider/jquery.flexslider.js"
+    "assets/js/photoswipe/photoswipe-ui-default.js"
+    "assets/css/photoswipe/default-skin/default-skin.css"
+    "assets/js/frontend/single-product.js"
  */
+
     $base_dir     = ABSPATH . 'sv-rr/';
     $url_prefix   = '/sv-rr/static';
     $redux_prefix = 'redux';
