@@ -1,5 +1,7 @@
 **This is a port of "Simple Variations" buyer's product page implemented with React using the Redux Toolkit.**
 
+To load the React Redux app directly into your browser use a URL like ".../index.html?product_id=1234", e.g. [http://svmc.x10host.com/sv-rr/index.html?product_id=1880](http://svmc.x10host.com/sv-rr/index.html?product_id=1880)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
 ## Available Scripts
