@@ -1,10 +1,11 @@
 <?php
 /*
  * Plugin Name: Redux Adapter for Classic Commerce
+ * Plugin URI: http://svmc.x10host.com/
  * Description: Enqueues the React Redux scripts for the React Redux pages of Simple Variations
  * Version: 0.1.0
  * Author: Magenta Cuda
- * Author URI: http://svmc.x10host.com/
+ * Author URI: http://m-cuda.dx.am/
  */
 
 # extracts the static css and js chunks and the inline js script from the Redux generated index.html file and enqueue them. 
