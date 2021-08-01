@@ -1,6 +1,7 @@
 <?php
 /*
  * Plugin Name: Redux Adapter for Classic Commerce
+ * Description: Enqueues the React Redux scripts for React Redux pages
  */
 
 # extracts the static css and js chunks and the inline js script from the Redux generated index.html file and enqueue them. 
@@ -27,7 +28,7 @@ The post content must contain the string '[product_page' to cause "frontend/sing
 
 /*
  * Forcing ClassicCommerce to load "frontend/single-product.js" by embedding the string '[product_page' in the post_content works
- * then the below.
+ * better then the below.
 
         if ( current_theme_supports( 'wc-product-gallery-zoom' ) ) {
             wp_enqueue_script( 'zoom' );
