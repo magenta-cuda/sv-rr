@@ -7,10 +7,13 @@ import { noPrefix } from '../../app/globals'
 export const reloadAsync = createAsyncThunk(
     'reloadStatus',
     async (id, thunkAPI) => {
+        console.trace('export const reloadAsync = createAsyncThunk(');
+        debugger;
         // const url      = loadVariationsWithImageProps
         const url      = loadVariations
         const response = await fetch(`${url}&product_id=${id}`)
             .then(response => response.json())
+        console.log("reloadStatus():response = ", response)
         let productName = ''
         let data = {}
         let index = 0
@@ -39,6 +42,8 @@ export const reloadAsync = createAsyncThunk(
             const option = {id: id, selection: selection, image: thumbnail, fullsize: fullsize, price: price, quantity: quantity,
                             description: description, large_image: large_image, large_image_width: large_image_width,
                             large_image_height: large_image_height}
+            // TODO: This is a hack because thumbnail is unfortunately clipped
+            option.image = large_image
             if (url === loadVariationsWithImageProps) {
                 const imageProps = theResponse.image_props
                 // Object.assign(option, {large_image: imageProps.full_src, large_image_width: imageProps.full_src_w,
@@ -95,7 +100,7 @@ const choosersSlice = createSlice({
         addedToCart: 0
     },
     reducers: {
-        setSelected: (state, action) => {
+        setSelected(state, action) {
             let attribute
             let option
             attribute = state.data.find(item => {
@@ -105,35 +110,45 @@ const choosersSlice = createSlice({
             state.variationId       = null
             state.variationPrice    = null
             state.variationQuantity = null
-        },
-        reload: (state, action) => {
-            state.data = action.payload
         }
     },
-    extraReducers: {
-        [reloadAsync.pending]: (state, action) => {
+    extraReducers: (builder) => {
+        builder.addCase(reloadAsync.pending, (state, action) => {
             state.data             = 'Loading ...'
-        },
-        [reloadAsync.fulfilled]: (state, action) => {
+        })
+        builder.addCase(reloadAsync.fulfilled, (state, action) => {
+            console.log("reloadAsync.fulfilled = ", reloadAsync.fulfilled)
+            console.trace('[reloadAsync.fulfilled]: (state, action) => {')
+            console.log("reloadAsync.fulfilled: action = ", action)
+            debugger;
             state.productId         = action.payload.productId
             state.productName       = action.payload.productName
             state.data              = action.payload.data
             state.variationId       = action.payload.variationId
             state.variationPrice    = action.payload.variationPrice
             state.variationQuantity = action.payload.variationQuantity
-        },
-        [getVariationAsync.fulfilled]: (state, action) => {
+        })
+        builder.addCase(reloadAsync.rejected, (state, action) => {
+            console.log("reloadAsync.rejected = ", reloadAsync.rejected)
+            console.trace('[reloadAsync.rejected]: (state, action) => {')
+            console.log("reloadAsync.rejected: action = ", action)
+            state.productId = action.meta.arg   // Where is action.meta.arg documented?
+            state.data = []
+        })
+        builder.addCase(getVariationAsync.fulfilled, (state, action) => {
             state.variationId       = Number(action.payload.variation_id)
             state.variationPrice    = Number(action.payload.display_price)
             state.variationQuantity = Number(action.payload.max_qty)
-        },
-        [addToCartAsync.fulfilled]: (state, action) => {
+        })
+        builder.addCase(addToCartAsync.fulfilled, (state, action) => {
             console.log(addToCartAsync.fulfilled, action)
             // TODO: handle the returned 'div.widget_shopping_cart_content' HTML fragment
             ++state.addedToCart
-        },
+        })
     }
-});
+})
+
+console.log('choosersSlice = ', choosersSlice)
 
 export const { setSelected }         = choosersSlice.actions
 
