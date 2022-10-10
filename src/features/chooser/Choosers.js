@@ -1,5 +1,7 @@
+import React from 'react'
 import {Chooser} from './Chooser'
 import {Table} from '../table/Table'
+import {Grid} from '../grid/Grid'
 import {chooserClass, chooserImageClass} from '../../app/globals'
 import styles from './Choosers.module.css'
 
@@ -11,7 +13,8 @@ export function Choosers(props) {
     }, [])
     return (
         <div className={styles.div}>
-            <Table tableClass='' cellClass='' ncols={2} cells={cells} />
+            {/* <Table tableClass='' cellClass='' ncols={2} cells={cells} /> */}
+            <Grid ncols={2} cells={cells} />
         </div>
     )
 }
