@@ -1,3 +1,4 @@
+import React from 'react'
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { selectData, selectVariationId, selectAddedToCart, addToCartAsync } from '../chooser/choosersSlice'
