@@ -7,6 +7,20 @@
   font-weight: bold;
 }
 
+.SV-Redux-App-message {
+  font-size: 1em;
+  font-weight: bold;
+  color: red;
+  margin-top: 25px;
+  margin-bottom: 50px;
+}
+
+.SV-Redux-App-message span {
+  padding: 0.7em;
+  border: 2px solid red;
+  border-radius: 0.7em;
+}
+
 .SV-Redux-App-header {
   display: flex;
   flex-direction: row;
