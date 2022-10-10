@@ -8,8 +8,10 @@ import { reloadAsync } from './features/chooser/choosersSlice'
 
 const root = document.getElementById('sv-redux-root')
 if (root) {
-    const query     = new URLSearchParams(window.location.search)
-    const productId = query.get('product_id')
+    let productId        = 'productId' in root.dataset ? root.dataset.productId : 0
+    const query          = new URLSearchParams(window.location.search)
+    const queryProductId = query.get('product_id')
+    productId = queryProductId ? queryProductId : productId
     if (!productId) {
         window.alert('query parameter \'product_id\' missing or invalid')
     }
