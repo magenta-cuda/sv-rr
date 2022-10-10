@@ -28,6 +28,7 @@ The post content must contain the string '[product_page' to load the following s
     $redux_prefix = 'redux';
     $redux_root   = 'sv-redux-root';
     $buffer       = file_get_contents($base_dir . 'index.html');
+    # error_log( '$buffer = ' . $buffer );
     add_action('wp_enqueue_scripts', function() use ($buffer, $url_prefix, $redux_prefix, $redux_root) {
         global $post;
         if ($post && strpos($post->post_content, $redux_root) === FALSE) {
@@ -55,10 +56,12 @@ The post content must contain the string '[product_page' to load the following s
         }
  */
 
-        if (preg_match_all("#<(link|script)\\s(href|src)=\"($url_prefix/(.+?)\\.chunk\\.(css|js))\"#", $buffer, $matches)) {
+        if (preg_match_all("#<(link|script(\\sdefer=\"defer\")?)\\s(href|src)=\"($url_prefix/(css|js)/main\\.(.+?)\\.(css|js))\"#",
+                           $buffer, $matches)) {
+            error_log( '$matches = ' . print_r( $matches, true ) );
             $seqno  = 0;
             $handle = NULL;
-            foreach ($matches[3] as $file) {
+            foreach ($matches[4] as $file) {
                 $seqno = $seqno + 1;
                 $redux_handle = $redux_prefix . $seqno;
                 if (substr_compare($file, '.css', -4, 4) === 0) {
@@ -70,8 +73,17 @@ The post content must contain the string '[product_page' to load the following s
                     }
                 }
             }
-            preg_match_all("#<script>(.+?)</script>#", $buffer, $matches);
-            wp_add_inline_script($handle, $matches[1][0], 'before');
+            # preg_match_all("#<script>(.+?)</script>#", $buffer, $matches);
+            # wp_add_inline_script($handle, $matches[1][0], 'before');
         }
     });
+
+    add_action( 'init', function() {
+        # [mc_sv_product redux_root="sv-redux-root" product_id="12345"]
+        add_shortcode( 'mc_sv_product', function( $atts = [], $content = NULL, $tag = '' ) {
+            $atts = array_change_key_case( (array) $atts, CASE_LOWER );
+            $atts = shortcode_atts( [ 'product_id' => get_option( 'mc_xii_simple_variations_demo_product_id', 0 ) ], $atts, $tag );
+            return '<div id="sv-redux-root" data-product-id="' . $atts[ 'product_id' ] . '"></div>';
+        } );
+    } );
 ?>
