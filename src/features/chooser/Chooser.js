@@ -1,6 +1,8 @@
+import React from 'react'
 import {useEffect} from 'react'
 import {useDispatch} from 'react-redux'
 import {Table} from '../table/Table'
+import {Grid} from '../grid/Grid'
 import {setSelected} from './choosersSlice'
 import {currency, chooserTableClass, chooserCellClass} from '../../app/globals'
 import styles from './Chooser.module.css'
@@ -46,7 +48,8 @@ export function Chooser(props) {
                      data-large_image_height={props.selected ? props.selected.large_image_height : ''} />
                 <div className={styles.overlay}>{`${props.selected.selection}${price}`}</div>
             </div>
-            <Table tableClass={chooserTableClass} cellClass={chooserCellClass} ncols={3} cells={cells} />
+            {/* <Table tableClass={chooserTableClass} cellClass={chooserCellClass} ncols={3} cells={cells} /> */}
+            <Grid cells={cells} />
         </div>
     )
 }
