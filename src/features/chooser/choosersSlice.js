@@ -1,19 +1,14 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { chooseImage, chooseFullsize, noneImage, noneFullsize, iconFullsizeDimension, getVariation, loadVariations,
-         loadVariationsWithImageProps, addToCart }
-    from '../../app/globals'
-import { noPrefix } from '../../app/globals'
+         loadVariationsWithImageProps, addToCart, noPrefix } from '../../app/globals'
 
 export const reloadAsync = createAsyncThunk(
     'reloadStatus',
     async (id, thunkAPI) => {
-        console.trace('export const reloadAsync = createAsyncThunk(');
-        debugger;
         // const url      = loadVariationsWithImageProps
         const url      = loadVariations
         const response = await fetch(`${url}&product_id=${id}`)
             .then(response => response.json())
-        console.log("reloadStatus():response = ", response)
         let productName = ''
         let data = {}
         let index = 0
@@ -117,10 +112,6 @@ const choosersSlice = createSlice({
             state.data             = 'Loading ...'
         })
         builder.addCase(reloadAsync.fulfilled, (state, action) => {
-            console.log("reloadAsync.fulfilled = ", reloadAsync.fulfilled)
-            console.trace('[reloadAsync.fulfilled]: (state, action) => {')
-            console.log("reloadAsync.fulfilled: action = ", action)
-            debugger;
             state.productId         = action.payload.productId
             state.productName       = action.payload.productName
             state.data              = action.payload.data
@@ -129,9 +120,6 @@ const choosersSlice = createSlice({
             state.variationQuantity = action.payload.variationQuantity
         })
         builder.addCase(reloadAsync.rejected, (state, action) => {
-            console.log("reloadAsync.rejected = ", reloadAsync.rejected)
-            console.trace('[reloadAsync.rejected]: (state, action) => {')
-            console.log("reloadAsync.rejected: action = ", action)
             state.productId = action.meta.arg   // Where is action.meta.arg documented?
             state.data = []
         })
@@ -141,14 +129,11 @@ const choosersSlice = createSlice({
             state.variationQuantity = Number(action.payload.max_qty)
         })
         builder.addCase(addToCartAsync.fulfilled, (state, action) => {
-            console.log(addToCartAsync.fulfilled, action)
             // TODO: handle the returned 'div.widget_shopping_cart_content' HTML fragment
             ++state.addedToCart
         })
     }
 })
-
-console.log('choosersSlice = ', choosersSlice)
 
 export const { setSelected }         = choosersSlice.actions
 
