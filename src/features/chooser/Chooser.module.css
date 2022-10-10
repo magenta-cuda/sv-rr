@@ -5,10 +5,12 @@
     width: calc(100% - 0px);
     margin: 0;
     padding: 0;
+    border:5px solid #ff0000;
     box-sizing: border-box;
 }
 
 .imgDiv {
+    display: flex;             /* Why is this necessary for the element height to match the content height? */
     position: relative;
     width: 100%;
     height: auto;
@@ -21,6 +23,7 @@
     width: 100%;
     height: auto;
     aspect-ratio: 1 / 1;
+    object-fit: fill;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -45,7 +48,9 @@
     width: 100%;
     height: auto;
     aspect-ratio: 1 / 1;
+    object-fit: fill;
     margin: 0;
     padding: 0;
+    border: 2px solid black;
     box-sizing: border-box;
 }
