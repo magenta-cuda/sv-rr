@@ -123,14 +123,24 @@ const choosersSlice = createSlice({
             state.productId = action.meta.arg   // Where is action.meta.arg documented?
             state.data = []
         })
+
         builder.addCase(getVariationAsync.fulfilled, (state, action) => {
             state.variationId       = Number(action.payload.variation_id)
             state.variationPrice    = Number(action.payload.display_price)
             state.variationQuantity = Number(action.payload.max_qty)
         })
+        builder.addCase(getVariationAsync.rejected, (state, action) => {
+            alert("Get Variation Failed")
+            console.log("getVariationAsync.rejected", action)
+        })
+
         builder.addCase(addToCartAsync.fulfilled, (state, action) => {
             // TODO: handle the returned 'div.widget_shopping_cart_content' HTML fragment
             ++state.addedToCart
+        })
+        builder.addCase(addToCartAsync.rejected, (state, action) => {
+            alert("Add to Cart Failed")
+            console.log("addToCartAsync.rejected", action)
         })
     }
 })
