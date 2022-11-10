@@ -13,8 +13,8 @@ export const currency                     = '$'
 export const noPrefix                     = 'No '
 export const chooserClass                 = 'sv-rr-product-gallery'
 export const chooserImageClass            = 'sv-rr-product-image'
-export const chooserTableClass            = 'chooser-table'
-export const chooserCellClass             = 'sv-rr-product-gallery__image'
+export const chooserTableClass            = 'chooser-table'                  // used only with Table in Chooser
+export const chooserCellClass             = 'sv-rr-product-gallery__image'   // used only with Table in Chooser
 
 // The 'sv-rr-product-gallery' and 'sv-rr-product-gallery__image' classes are used by "sv-rr-single-product.js"
 // The post content must contain the string '[product_page' to cause "frontend/single-product.js" to load.
